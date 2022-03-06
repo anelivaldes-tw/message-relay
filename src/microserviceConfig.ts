@@ -8,7 +8,7 @@ export const microserviceConfig: KafkaOptions = {
       brokers: ['localhost:9092'],
     },
     consumer: {
-      groupId: 'order',
+      groupId: 'message-relay',
       allowAutoTopicCreation: true,
     },
   },
