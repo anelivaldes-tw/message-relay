@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { OUTBOX_REPOSITORY, PENDING, SEQUELIZE } from '../constants';
+import { OrderState, OUTBOX_REPOSITORY, SEQUELIZE } from '../constants';
 import { Outbox } from './outbox.entity';
 import { EventPublisherService } from '../event-publisher/event-publisher.service';
 import {
@@ -34,9 +34,9 @@ export class OutboxService {
     let sent = 1;
     console.log(`Messages to send: ${count}`);
     unSent.forEach((e: Outbox) => {
-      if (e.getDataValue('type') === PENDING) {
+      if (e.getDataValue('state') === OrderState.PENDING) {
         const orderCreatedEvent: OrderEvent = {
-          type: OrderEventsTypes.ORDER_CREATED,
+          state: OrderEventsTypes.ORDER_CREATED,
           orderId: e.getDataValue('orderId'),
           customerId: e.getDataValue('customerId'),
           orderTotal: e.getDataValue('orderTotal'),
