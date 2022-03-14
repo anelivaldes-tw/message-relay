@@ -1,10 +1,10 @@
-import { Module } from "@nestjs/common";
-import { EventPublisherModule } from "../event-publisher/event-publisher.module";
-import { EventPublisherService } from "../event-publisher/event-publisher.service";
+import { Module } from '@nestjs/common';
+import { EventPublisherModule } from '../event-publisher/event-publisher.module';
+import { EventPublisherService } from '../event-publisher/event-publisher.service';
 
-import { outboxProviders } from "./outbox.providers";
-import { databaseProviders } from "../database/database.providers";
-import { OutboxService } from "./outbox.service";
+import { outboxProviders } from './outbox.providers';
+import { databaseProviders } from '../database/database.providers';
+import { OutboxService } from './outbox.service';
 
 @Module({
   imports: [EventPublisherModule],
@@ -12,9 +12,8 @@ import { OutboxService } from "./outbox.service";
     OutboxService,
     ...outboxProviders,
     ...databaseProviders,
-    EventPublisherService
+    EventPublisherService,
   ],
-  exports: [OutboxService]
+  exports: [OutboxService],
 })
-export class OutboxModule {
-}
+export class OutboxModule {}
